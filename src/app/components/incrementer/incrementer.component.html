@@ -1,0 +1,28 @@
+<h3> {{ identifier }} </h3>
+<div class="input-group">
+          <span class="input-group-btn">
+            <button
+              (click)="changeValue(-5)"
+              class="btn btn-primary"
+              type="button">
+              <i class="mdi mdi-minus"></i>
+            </button>
+          </span>
+  <input
+    #txtPercent
+    (ngModelChange)="onChanges( $event )"
+    type="number"
+    class="form-control"
+    name="percent"
+    [(ngModel)]="percent"
+    min="0" max="100"
+  >
+  <span class="input-group-btn">
+            <button
+              (click)="changeValue(+5)"
+              class="btn btn-primary"
+              type="button">
+              <i class="mdi mdi-plus"></i>
+            </button>
+          </span>
+</div>
