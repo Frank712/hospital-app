@@ -1,3 +1,13 @@
-<p>
-  graphics1 works!
-</p>
+<div class="row">
+  <div class="col-6" *ngFor="let graphic of graphics">
+    <div class="card">
+      <div class="card-body">
+
+        <app-doughnut-chart [doughnutChartType]="graphic.type" [doughnutChartData]="graphic.data" [doughnutChartLabels]="graphic.labels" [doughnutItem]="graphic.item">
+
+        </app-doughnut-chart>
+
+      </div>
+    </div>
+  </div>
+</div>
