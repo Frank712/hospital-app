@@ -18,5 +18,4 @@ export class LoginComponent implements OnInit {
     console.log('Log in...');
     this.router.navigate(['/dashboard']);
   }
-
 }

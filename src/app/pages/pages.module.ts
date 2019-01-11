@@ -12,10 +12,12 @@ import {Graphics1Component} from './graphics1/graphics1.component';
 import {FormsModule} from '@angular/forms';
 import {IncrementerComponent} from '../components/incrementer/incrementer.component';
 import {DoughnutChartComponent} from '../components/doughnut-chart/doughnut-chart.component';
+import { PromisesComponent } from './promises/promises.component';
 
 //  Routes
 import {PAGES_ROUTES} from './pages.routes';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     PagesComponent,
     IncrementerComponent,
     DoughnutChartComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    PromisesComponent,
+    RxjsComponent
   ],
   exports: [
     DashboardComponent,
