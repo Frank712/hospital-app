@@ -1,0 +1,98 @@
+<div class="row animated fadeIn">
+  <div class="col-lg-7">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Profile Data</h4>
+        <h6 class="card-subtitle">Change your profile data</h6>
+        <form ngNativeValidate #f="ngForm" class="form p-t-20" (ngSubmit)="editProfile( f.value )">
+          <div class="form-group">
+            <label >Name</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-user"></i></div>
+              <input [ngModel]="user.name" name="name" type="text" class="form-control" placeholder="Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label >Last Name</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-user"></i></div>
+              <input [ngModel]="user.lastname" name="lastname" type="text" class="form-control" placeholder="Last name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label >Email address</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-email"></i></div>
+              <input [ngModel]="user.email" name="email" type="email" class="form-control" placeholder="Enter email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pwd1">Password</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-lock"></i></div>
+              <input [ngModel]="newPass1" name="newPass1" type="password" class="form-control" id="pwd1" placeholder="Enter password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pwd2">Confirm Password</label>
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-lock"></i></div>
+              <input [ngModel]="newPass2" name="newPass2" type="password" class="form-control" id="pwd2" placeholder="Confirm password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="checkbox checkbox-success">
+              <input [ngModel]="confirm" name="confirm" id="confirm" type="checkbox">
+              <label for="confirm"> I'm sure </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-block btn-success waves-effect waves-light m-r-10">
+            <i class="fa fa-save"></i>
+            Save
+          </button>
+          <button type="submit" class="btn btn-block btn-inverse waves-effect waves-light">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">User Photo</h4>
+        <h6 class="card-subtitle">Change your profile photo</h6>
+        <img src="" alt="">
+        <div class="dropify-wrapper">
+          <div class="dropify-message"><span class="file-icon">
+          </span>
+            <p>Drag and drop a file here or click</p>
+            <p class="dropify-error">Ooops, something wrong appended.</p>
+          </div>
+          <div class="dropify-loader"></div>
+          <div class="dropify-errors-container">
+            <ul></ul>
+          </div><input type="file" id="input-file-now" class="dropify">
+          <button type="button" class="dropify-clear">
+            Remove
+          </button>
+          <div class="dropify-preview">
+            <span class="dropify-render"></span>
+            <div class="dropify-infos">
+              <div class="dropify-infos-inner">
+                <p class="dropify-filename"><span class="file-icon"></span>
+                  <span class="dropify-filename-inner"></span>
+                </p>
+                <p class="dropify-infos-message">Drag and drop or click to replace</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <button type="button" class="btn btn-block btn-success waves-effect waves-light m-r-10">
+          <i class="fa fa-image"></i>
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

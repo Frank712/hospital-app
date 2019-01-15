@@ -1,5 +1,6 @@
 //  Modules
 import { NgModule } from '@angular/core';
+import {PipesModule} from '../pipes/pipes.module';
 
 //  Components
 import {HeaderComponent} from './header/header.component';
@@ -12,7 +13,8 @@ import {CommonModule} from '@angular/common';
 @NgModule({
   imports: [
     RouterModule,
-    CommonModule
+    CommonModule,
+    PipesModule
   ],
   declarations: [
     HeaderComponent,

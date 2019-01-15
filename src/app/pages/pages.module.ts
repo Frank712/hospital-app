@@ -2,6 +2,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
+import {PipesModule} from '../pipes/pipes.module';
+
 // Components
 import {PagesComponent} from './pages.component';
 
@@ -18,6 +20,7 @@ import { PromisesComponent } from './promises/promises.component';
 import {PAGES_ROUTES} from './pages.routes';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     DoughnutChartComponent,
     AccountSettingsComponent,
     PromisesComponent,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
   ],
   exports: [
     DashboardComponent,
@@ -42,6 +46,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     SharedModule,
     FormsModule,
     ChartsModule,
+    PipesModule,
     PAGES_ROUTES
   ]
 })

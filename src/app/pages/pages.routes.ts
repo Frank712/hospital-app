@@ -8,6 +8,7 @@ import {AccountSettingsComponent} from './account-settings/account-settings.comp
 import {PromisesComponent} from './promises/promises.component';
 import {RxjsComponent} from './rxjs/rxjs.component';
 import {LoginGuardGuard} from '../services/service.index';
+import {ProfileComponent} from './profile/profile.component';
 
 
 const pagesRoutes: Routes = [
@@ -20,6 +21,7 @@ const pagesRoutes: Routes = [
       { path: 'graphics1', component: Graphics1Component, data: { title: 'Graphics', description: 'This is a Graphics page'} },
       { path: 'accountSettings', component: AccountSettingsComponent, data: { title: 'Account Settings', description: 'This is a AccountSettings page'} },
       { path: 'promises', component: PromisesComponent, data: { title: 'Promises', description: 'This is a Promises page'} },
+      { path: 'profile', component: ProfileComponent, data: { title: 'User profile', description: 'Show the user profile'} },
       { path: 'rxjs', component: RxjsComponent, data: { title: 'rxjs', description: 'This is a rxj page'} },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
     ]
