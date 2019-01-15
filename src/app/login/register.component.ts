@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import swal from 'sweetalert';
+import {UserService} from '../services/service.index';
+import {UserModel} from '../models/user.model';
+import {Router} from '@angular/router';
 declare function init_plugins();
 
 @Component({
@@ -12,7 +15,8 @@ export class RegisterComponent implements OnInit {
 
   _formGroup: FormGroup;
 
-  constructor() { }
+  constructor( public userService: UserService,
+               public router: Router) { }
 
   errorEqualsValues (field_1: string, field_2: string) {
 
@@ -40,9 +44,9 @@ export class RegisterComponent implements OnInit {
     }, { validators: this.errorEqualsValues( 'password1', 'password2' ) });
 
     this._formGroup.setValue({
-      name: 'Frank',
-      lastname: 'Linux',
-      email: 'test1@mail.com',
+      name: 'Test ',
+      lastname: 'LastTest ',
+      email: 'test_@mail.com',
       password1: '123456',
       password2: '123456',
       conditions: true
@@ -61,5 +65,17 @@ export class RegisterComponent implements OnInit {
       return;
     }
     console.log(this._formGroup.value);
+    const user = new UserModel(
+      this._formGroup.value.name,
+      this._formGroup.value.lastname,
+      this._formGroup.value.email,
+      this._formGroup.value.password1
+    );
+    console.log('The user in RegisterComponent is: ', user);
+    this.userService.createUser( user )
+      .subscribe( resp => {
+        console.log(resp);
+        this.router.navigate(['/login']);
+      } );
   }
 }
