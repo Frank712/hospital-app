@@ -21,6 +21,8 @@ import {PAGES_ROUTES} from './pages.routes';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { ProfileComponent } from './profile/profile.component';
     AccountSettingsComponent,
     PromisesComponent,
     RxjsComponent,
-    ProfileComponent
+    ProfileComponent,
+    ViewProfileComponent
   ],
   exports: [
     DashboardComponent,
@@ -43,6 +46,7 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     SharedModule,
     FormsModule,
     ChartsModule,

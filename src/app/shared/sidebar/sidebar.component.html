@@ -12,7 +12,7 @@
             <img [src]="user.img | image" alt="user" />
             <span class="hide-menu">{{ user.name }}</span></a>
           <ul aria-expanded="false" class="collapse">
-            <li><a routerLink="/profile" routerLinkActive="active">My Profile </a></li>
+            <li><a routerLink="/view_profile" routerLinkActive="active">My Profile </a></li>
             <li><a href="javascript:void()">My Balance</a></li>
             <li><a href="javascript:void()">Inbox</a></li>
             <li><a [routerLink]="'/accountSettings'" routerLinkActive="active">Account Setting</a></li>
