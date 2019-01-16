@@ -24,6 +24,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import {CommonModule} from '@angular/common';
 import { UsersComponent } from './users/users.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UsersComponent } from './users/users.component';
     RxjsComponent,
     ProfileComponent,
     ViewProfileComponent,
-    UsersComponent
+    UsersComponent,
+    ModalUploadComponent
   ],
   exports: [
     DashboardComponent,

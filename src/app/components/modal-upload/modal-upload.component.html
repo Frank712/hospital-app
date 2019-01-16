@@ -1,0 +1,46 @@
+<div class="black-background animated fadeIn" [ngClass]="_modalUpService.hidden">
+  <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Image User</h5>
+          <button (click)="closeModal()" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="dropify-wrapper has-preview" style="height: 514px;">
+            <div class="dropify-message"><span class="file-icon"></span>
+              <p>Drag and drop a file here or click</p><p class="dropify-error">Ooops, something wrong appended.</p>
+            </div>
+            <div class="dropify-loader" style="display: none;"></div>
+            <div class="dropify-errors-container"><ul></ul></div>
+            <input (change)="imageSelected($event.target.files[0])" type="file" class="dropify" data-height="500">
+            <button (click)="removeTempImage()" type="button" class="dropify-clear">Remove</button>
+            <div class="dropify-preview" style="display: block;">
+            <span class="dropify-render">
+              <img *ngIf="!imageTemp" [src]="'unknow' | image" style="max-height: 400px;">
+              <img *ngIf="imageTemp" [src]="imageTemp" style="max-height: 400px;">
+            </span>
+              <div class="dropify-infos">
+                <div class="dropify-infos-inner">
+                  <p class="dropify-filename">
+                    <span class="file-icon"></span>
+                    <span class="dropify-filename-inner">{{ imageTemp }}</span>
+                  </p>
+                  <p class="dropify-infos-message">
+                    Drag and drop or click to replace
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button (click)="closeModal()" type="button" class="btn btn-secondary">Close</button>
+          <button  (click)="uploadImage()" [disabled]="!imageTemp"  type="button" class="btn btn-success">Save image</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserModel} from '../../models/user.model';
 import {UserService} from '../../services/service.index';
+import {ModalUploadService} from '../../components/modal-upload/modal-upload.service';
 declare var swal: any;
 @Component({
   selector: 'app-users',
@@ -15,10 +16,14 @@ export class UsersComponent implements OnInit {
   nextBut: boolean = true;
   loadingUser: boolean;
 
-  constructor( public _userService: UserService) { }
+  constructor( public _userService: UserService,
+               public _modUpServices: ModalUploadService ) { }
 
   ngOnInit() {
     this.loadUsers();
+    this._modUpServices.notification.subscribe( (resp) =>{
+      this.loadUsers();
+    });
   }
 
   loadUsers() {
@@ -88,6 +93,10 @@ export class UsersComponent implements OnInit {
           });
         }
       });
+  }
+
+  showModalImage( id: string ) {
+    this._modUpServices.showModal( 'users', id );
   }
 
   saveUser( user: UserModel ) {
