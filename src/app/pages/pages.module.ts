@@ -23,6 +23,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import {CommonModule} from '@angular/common';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {CommonModule} from '@angular/common';
     PromisesComponent,
     RxjsComponent,
     ProfileComponent,
-    ViewProfileComponent
+    ViewProfileComponent,
+    UsersComponent
   ],
   exports: [
     DashboardComponent,

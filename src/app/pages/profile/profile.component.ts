@@ -52,7 +52,7 @@ export class ProfileComponent implements OnInit {
     }
     const reader = new FileReader();
     const urlImageTemp = reader.readAsDataURL(file);
-    reader.onloadend = () => this.imageTemp = reader.result;
+    reader.onloadend = () => this.imageTemp = reader.result.toString();
 
     this.imageUpload = file;
   }

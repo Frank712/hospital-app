@@ -10,7 +10,6 @@ export class LoginGuardGuard implements CanActivate {
   constructor( public userService: UserService,
                public router: Router) {}
   canActivate(): boolean {
-    console.log('Passing by the LoginGuard');
     if ( this.userService.isLogin() ) {
       console.log('Authorized');
       return true;
