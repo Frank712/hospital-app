@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import swal from 'sweetalert';
 import {UserService} from '../services/service.index';
 import {UserModel} from '../models/user.model';
 import {Router} from '@angular/router';
 declare function init_plugins();
-
+declare var swal: any;
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -52,29 +51,22 @@ export class RegisterComponent implements OnInit {
       conditions: true
     });
   }
-
-
-
   registerUser() {
     if (this._formGroup.invalid) {
       return;
     }
     if ( !this._formGroup.value.conditions ) {
       swal( 'Important', 'Must be accept conditions', 'warning' );
-      console.log('Must be accept conditions');
       return;
     }
-    console.log(this._formGroup.value);
     const user = new UserModel(
       this._formGroup.value.name,
       this._formGroup.value.lastname,
       this._formGroup.value.email,
       this._formGroup.value.password1
     );
-    console.log('The user in RegisterComponent is: ', user);
     this.userService.createUser( user )
       .subscribe( resp => {
-        console.log(resp);
         this.router.navigate(['/login']);
       } );
   }

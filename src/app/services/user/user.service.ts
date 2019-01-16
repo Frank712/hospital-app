@@ -5,6 +5,7 @@ import {URL_SERVICES} from '../../config/config';
 import { map } from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {UploadFileService} from '../uploadFile/upload-file.service';
+declare var swal: any;
 
 @Injectable({
   providedIn: 'root'
@@ -89,9 +90,11 @@ export class UserService {
     let url = URL_SERVICES + '/users/' + user._id;
     url += '?token=' + this.token;
     return this.http.put(url, user).pipe( map( (resp: any) => {
-      const userDB = resp.user;
-      this.saveStorage( user._id, resp.token, userDB);
-      swal( 'User updated', userDB.name, 'success' );
+      if ( this.user._id === user._id ) {
+        const userDB = resp.user;
+        this.saveStorage( user._id, resp.token, userDB);
+      }
+      swal( 'User updated', 'The user ' + user.name + ' has been updated successfully', 'success' );
       return true;
     }));
   }
@@ -107,5 +110,20 @@ export class UserService {
       .catch( resp => {
         console.log(resp);
       });
+  }
+
+  loadUsers( _from: number ) {
+    const url = URL_SERVICES + '/users?_from= + ' + _from;
+    return this.http.get(url);
+  }
+
+  searchUsers( term: string ) {
+    const url = URL_SERVICES + '/search/collection/users/' + term;
+    return this.http.get(url);
+  }
+
+  deleteUser( id: string ) {
+    const url = URL_SERVICES + '/users/' + id + '?token=' +this.token;
+    return this.http.delete(url);
   }
 }
