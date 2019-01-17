@@ -12,6 +12,8 @@ import {ProfileComponent} from './profile/profile.component';
 import {ViewProfileComponent} from './view-profile/view-profile.component';
 import {UsersComponent} from './users/users.component';
 import {HospitalsComponent} from './hospitals/hospitals.component';
+import {DoctorsComponent} from './doctors/doctors.component';
+import {DoctorComponent} from './doctors/doctor.component';
 
 
 const pagesRoutes: Routes = [
@@ -29,6 +31,8 @@ const pagesRoutes: Routes = [
       /*  Maintenance  */
       { path: 'users', component: UsersComponent, data: { title: 'Users Maintenance', description: 'Controls for users maintenance'} },
       { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospital Maintenance', description: 'Controls for hospital maintenance'} },
+      { path: 'doctors', component: DoctorsComponent, data: { title: 'Doctor Maintenance', description: 'Controls for doctor maintenance'} },
+      { path: 'doctor/:id', component: DoctorComponent, data: { title: 'Edit Doctor', description: 'Controls for edit a doctor'} },
       { path: 'rxjs', component: RxjsComponent, data: { title: 'rxjs', description: 'This is a rxj page'} },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
     ]

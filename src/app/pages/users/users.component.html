@@ -25,7 +25,7 @@
     <div class="card">
       <div class="card-body">
         <h3 class="card-title">Register User ( <small>{{ registerTotal }}</small> )</h3>
-        <table class="table table-hover table-responsive">
+        <table class="table table-hover">
           <thead>
           <tr>
             <th>Image</th>
@@ -46,7 +46,7 @@
             <td>{{ user.name }}</td>
             <td>{{ user.lastname }}</td>
             <td>
-              <select [(ngModel)]="user.role" name="role">
+              <select class="form-control" [(ngModel)]="user.role" name="role">
                 <option value="ADMIN_ROLE">ADMIN_ROLE</option>
                 <option value="USER_ROLE">USER_ROLE</option>
               </select>
@@ -58,7 +58,7 @@
             <td>
               <button (click)="saveUser(user)" class="btn btn-primary">
                 <i class="fa fa-save"></i>
-              </button>
+              </button> |
               <button (click)="deleteUser(user)" class="btn btn-danger">
                 <i class="fa fa-trash-o"></i>
               </button>
@@ -68,6 +68,10 @@
         </table>
         <button (click)="changeFrom(-5)" class="btn btn-secondary" [disabled]="prevBut">Prev</button>
         <button (click)="changeFrom(5)" class="btn btn-secondary" [disabled]="nextBut">Next</button>
+        <div class="text-center">
+          <h4  *ngIf="plural && searching" class="card-subtitle"> {{ totalSearch }} users found </h4>
+          <h4  *ngIf="!plural && searching" class="card-subtitle"> {{ totalSearch }} user found </h4>
+        </div>
       </div>
     </div>
   </div>

@@ -52,7 +52,6 @@ export class ModalUploadComponent implements OnInit {
   uploadImage () {
     this._uploadFilesServices.uploadFile( this.imageUpload, this._modalUpService._type, this._modalUpService._id  )
       .then( (resp) => {
-        console.log(resp);
         this._modalUpService.notification.emit( resp );
         this.closeModal();
       })

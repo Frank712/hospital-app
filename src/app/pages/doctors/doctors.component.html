@@ -1,0 +1,57 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input (keyup)="searchDoctors(input.value)" #input type="text" class="form-control" placeholder="Search Doctors">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-right">
+          <button [routerLink]="['/doctor', 'new']" type="button" class="btn waves-effect waves-light btn-rounded btn-info">
+            <i class="fa fa-plus"></i> New Doctor
+          </button>
+        </div>
+        <h3 class="card-title">Register Doctors ( <small> {{ totalRegister }} </small> )</h3>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Hospital</th>
+            <th>Options</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let doctor of doctors">
+            <td>
+              <img [src]="doctor.img | image:'doctor'" alt="" class="img-50 pointer">
+            </td>
+            <td> {{ doctor.name }} </td>
+            <td *ngIf="doctor.hospital"> {{ doctor.hospital.name }} </td>
+            <td *ngIf="!doctor.hospital"> Not assigned </td>
+            <td>
+              <button [routerLink]="['/doctor', doctor._id]" class="btn btn-primary">
+                <i class="fa fa-save"></i>
+              </button> |
+              <button (click)="deleteDoctor( doctor )" class="btn btn-danger">
+                <i class="fa fa-trash-o"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="text-center">
+          <h4  *ngIf="plural && searching" class="card-subtitle"> {{ totalSearch }} doctors found </h4>
+          <h4  *ngIf="!plural && searching" class="card-subtitle"> {{ totalSearch }} doctor found </h4>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

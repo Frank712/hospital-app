@@ -15,6 +15,9 @@ export class UsersComponent implements OnInit {
   prevBut: boolean = true;
   nextBut: boolean = true;
   loadingUser: boolean;
+  totalSearch = 0;
+  plural = false;
+  searching = false;
 
   constructor( public _userService: UserService,
                public _modUpServices: ModalUploadService ) { }
@@ -35,6 +38,7 @@ export class UsersComponent implements OnInit {
         this.nextBut = false;
       }
     });
+    this.searching = false;
     this.loadingUser = false;
   }
 
@@ -64,6 +68,9 @@ export class UsersComponent implements OnInit {
     }
     this._userService.searchUsers(term).subscribe((resp: any) => {
       this.users = resp.users;
+      this.totalSearch = resp.users.length;
+      this.plural = !(this.totalSearch === 1);
+      this.searching = true;
       this.loadingUser = false;
     });
   }
