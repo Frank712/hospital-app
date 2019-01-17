@@ -17,7 +17,6 @@ export class UserService {
   constructor( public http: HttpClient,
                public router: Router,
                public _ufService: UploadFileService) {
-    console.log('UserService ready!');
     this.loadStorage();
   }
 

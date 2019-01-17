@@ -12,10 +12,10 @@ export class UploadFileService {
   uploadFile( file: File, _type: string, id: string ) {
     const formData = new FormData();
     const xhr = new XMLHttpRequest();
-    return new Promise( (resolve, reject) =>{
+    return new Promise( (resolve, reject) => {
       formData.append( 'img', file, file.name );
       xhr.onreadystatechange = function() {
-        if( xhr.readyState === 4 ) {
+        if ( xhr.readyState === 4 ) {
           if ( xhr.status === 200 ) {
             console.log('Image uploaded');
             resolve( JSON.parse( xhr.response ));

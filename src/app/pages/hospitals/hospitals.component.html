@@ -1,0 +1,67 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input (keyup)="searchHospitals(input.value)" #input type="text" class="form-control" placeholder="Search hospitals">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="loadingHospitals">
+  <div class="col-sm-12">
+    <div class="alert text-center">
+      <strong>Loading</strong>
+      <br>
+      <i class="fa fa-spinner fa-spin fa-5x"></i>
+      <br>
+      <span>Please, wait...</span>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-right">
+          <button (click)="showFormCreate()" type="button" class="btn waves-effect waves-light btn-rounded btn-info">
+            <i class="fa fa-plus"></i> New Hospital
+          </button>
+        </div>
+        <h3 class="card-title">Register Hospitals ( <small>{{ registerTotal }}</small> )</h3>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let hospital of hospitals">
+            <td class="w-70">
+              <img (click)="showModalImage(hospital._id)" [src]="hospital.img | image:'hospital'" alt="" class="img-50 pointer">
+            </td>
+            <td>
+              <form action="" class="form-material form-horizontal">
+                <input class="form-control form-control-line" [(ngModel)]="hospital.name" type="text" name="name">
+              </form>
+            </td>
+            <td>
+              <button (click)="saveHospital(hospital)" class="btn btn-primary">
+                <i class="fa fa-save"></i>
+              </button>
+              <button (click)="deleteHospital(hospital)" class="btn btn-danger">
+                <i class="fa fa-trash-o"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-secondary" [disabled]="prevBut">Prev</button>
+        <button class="btn btn-secondary" [disabled]="nextBut">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
