@@ -13,6 +13,7 @@ declare var swal: any;
 export class UserService {
   user: UserModel;
   token: string;
+  menu: any = [];
 
   constructor( public http: HttpClient,
                public router: Router,
@@ -24,24 +25,28 @@ export class UserService {
     if ( localStorage.getItem('token') ) {
       this.token = localStorage.getItem('token');
       this.user = JSON.parse(localStorage.getItem('user'));
+      this.menu = JSON.parse(localStorage.getItem('menu'));
     } else {
       this.token = '';
       this.user = null;
+      this.menu = [];
     }
   }
 
-  saveStorage( id: string, token: string, user: UserModel) {
+  saveStorage( id: string, token: string, user: UserModel, menu: any) {
     localStorage.setItem('token', token);
     localStorage.setItem('id', id);
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('menu', JSON.stringify(menu));
     this.user = user;
     this.token = token;
+    this.menu = menu;
   }
 
   loginGoogle( token: string ) {
     const url = URL_SERVICES + '/login/google';
     return this.http.post(url, { token }).pipe( map( (resp: any) => {
-      this.saveStorage( resp.id, resp.token, resp.user);
+      this.saveStorage( resp.id, resp.token, resp.user, resp.menu);
       return true;
     }));
   }
@@ -54,7 +59,7 @@ export class UserService {
     }
     const url = URL_SERVICES + '/login';
     return this.http.post(url, user).pipe( map( (resp: any) => {
-      this.saveStorage( resp.id, resp.token, resp.user );
+      this.saveStorage( resp.id, resp.token, resp.user, resp.menu );
       return true;
     }));
   }
@@ -71,8 +76,10 @@ export class UserService {
   logout() {
     this.token = '';
     this.user = null;
+    this.menu = [];
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('menu');
     this.router.navigate(['/login']);
   }
 
@@ -91,7 +98,7 @@ export class UserService {
     return this.http.put(url, user).pipe( map( (resp: any) => {
       if ( this.user._id === user._id ) {
         const userDB = resp.user;
-        this.saveStorage( user._id, resp.token, userDB);
+        this.saveStorage( user._id, resp.token, userDB, this.menu);
       }
       swal( 'User updated', 'The user ' + user.name + ' has been updated successfully', 'success' );
       return true;
@@ -103,7 +110,7 @@ export class UserService {
       .then( (resp: any) => {
         this.user.img = resp.user.img;
         swal( resp.message, this.user.img, 'success' );
-        this.saveStorage( id, this.token, this.user );
+        this.saveStorage( id, this.token, this.user, this.menu );
         console.log(resp);
       })
       .catch( resp => {

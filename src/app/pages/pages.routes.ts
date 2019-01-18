@@ -7,7 +7,7 @@ import {Graphics1Component} from './graphics1/graphics1.component';
 import {AccountSettingsComponent} from './account-settings/account-settings.component';
 import {PromisesComponent} from './promises/promises.component';
 import {RxjsComponent} from './rxjs/rxjs.component';
-import {LoginGuardGuard} from '../services/service.index';
+import {AdminGuard, LoginGuardGuard} from '../services/service.index';
 import {ProfileComponent} from './profile/profile.component';
 import {ViewProfileComponent} from './view-profile/view-profile.component';
 import {UsersComponent} from './users/users.component';
@@ -31,7 +31,15 @@ const pagesRoutes: Routes = [
       { path: 'view_profile', component: ViewProfileComponent, data: { title: 'View User profile', description: 'Show the user profile'} },
       { path: 'search/:term', component: SearchComponent, data: { title: 'Searching', description: 'Search in all collections'} },
       /*  Maintenance  */
-      { path: 'users', component: UsersComponent, data: { title: 'Users Maintenance', description: 'Controls for users maintenance'} },
+      {
+        path: 'users',
+        canActivate: [AdminGuard],
+        component: UsersComponent,
+        data: {
+          title: 'Users Maintenance',
+          description: 'Controls for users maintenance'
+        }
+        },
       { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospital Maintenance', description: 'Controls for hospital maintenance'} },
       { path: 'doctors', component: DoctorsComponent, data: { title: 'Doctor Maintenance', description: 'Controls for doctor maintenance'} },
       { path: 'doctor/:id', component: DoctorComponent, data: { title: 'Edit Doctor', description: 'Controls for edit a doctor'} },

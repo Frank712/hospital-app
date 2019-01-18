@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  AdminGuard,
   DoctorsService,
   HospitalService,
   LoginGuardGuard,
@@ -28,7 +29,8 @@ import {ModalUploadService} from '../components/modal-upload/modal-upload.servic
     UploadFileService,
     ModalUploadService,
     HospitalService,
-    DoctorsService
+    DoctorsService,
+    AdminGuard
   ]
 })
 export class ServiceModule { }

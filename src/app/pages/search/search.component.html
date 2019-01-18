@@ -5,7 +5,7 @@
         <h4 class="card-title">
           Users
         </h4>
-        <table class="table table-hover">
+        <table class="table table-hover" *ngIf="users.length > 0">
           <tbody>
           <tr>
             <td>Photo</td>
@@ -17,6 +17,9 @@
           </tr>
           </tbody>
         </table>
+        <div class="alert alert-info" *ngIf="users.length === 0">
+          Registers not found!
+        </div>
       </div>
     </div>
   </div>
@@ -27,7 +30,7 @@
         <h4 class="card-title">
           Doctor
         </h4>
-        <table class="table table-hover">
+        <table class="table table-hover" *ngIf="doctors.length > 0">
           <tbody>
           <tr>
             <td>Photo</td>
@@ -39,6 +42,9 @@
           </tr>
           </tbody>
         </table>
+        <div class="alert alert-info" *ngIf="doctors.length === 0">
+          Registers not found!
+        </div>
       </div>
     </div>
   </div>
@@ -50,7 +56,7 @@
         <h4 class="card-title">
           Hospitals
         </h4>
-        <table class="table table-hover">
+        <table class="table table-hover" *ngIf="hospitals.length > 0">
           <tbody>
           <tr>
             <td>Photo</td>
@@ -62,6 +68,9 @@
           </tr>
           </tbody>
         </table>
+        <div class="alert alert-info" *ngIf="hospitals.length === 0">
+          Registers not found!
+        </div>
       </div>
     </div>
   </div>

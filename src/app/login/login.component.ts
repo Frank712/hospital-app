@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
 
   login( form: NgForm ) {
     const user = new UserModel(null, null, form.value.email, form.value.password );
-    console.log('User in loginComponent: ', user);
     this.userService.login(user, this.remember).subscribe( resp => {
       this.router.navigate(['/dashboard']);
     });

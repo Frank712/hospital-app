@@ -7,6 +7,7 @@ declare function init_plugins();
   styles: []
 })
 export class NopagefoundComponent implements OnInit {
+  year = new Date().getFullYear();
 
   constructor() { }
 
