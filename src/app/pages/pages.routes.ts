@@ -14,6 +14,7 @@ import {UsersComponent} from './users/users.component';
 import {HospitalsComponent} from './hospitals/hospitals.component';
 import {DoctorsComponent} from './doctors/doctors.component';
 import {DoctorComponent} from './doctors/doctor.component';
+import {SearchComponent} from './search/search.component';
 
 
 const pagesRoutes: Routes = [
@@ -28,6 +29,7 @@ const pagesRoutes: Routes = [
       { path: 'promises', component: PromisesComponent, data: { title: 'Promises', description: 'This is a Promises page'} },
       { path: 'profile', component: ProfileComponent, data: { title: 'Edit User profile', description: 'Show and edit the user profile'} },
       { path: 'view_profile', component: ViewProfileComponent, data: { title: 'View User profile', description: 'Show the user profile'} },
+      { path: 'search/:term', component: SearchComponent, data: { title: 'Searching', description: 'Search in all collections'} },
       /*  Maintenance  */
       { path: 'users', component: UsersComponent, data: { title: 'Users Maintenance', description: 'Controls for users maintenance'} },
       { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospital Maintenance', description: 'Controls for hospital maintenance'} },

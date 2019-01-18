@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">
+          Users
+        </h4>
+        <table class="table table-hover">
+          <tbody>
+          <tr>
+            <td>Photo</td>
+            <td>Name</td>
+          </tr>
+          <tr [routerLink]="['/users']" class="pointer" *ngFor="let user of users" >
+            <td><img class="img-fluid img-50" [src]="user.img | image:'user'" alt=""></td>
+            <td>{{ user.name  }} </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">
+          Doctor
+        </h4>
+        <table class="table table-hover">
+          <tbody>
+          <tr>
+            <td>Photo</td>
+            <td>Name</td>
+          </tr>
+          <tr [routerLink]="['/doctor', doctor._id]" class="pointer" *ngFor="let doctor of doctors" >
+            <td><img class="img-fluid img-50" [src]="doctor.img | image:'doctor'" alt=""></td>
+            <td>{{ doctor.name  }} </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">
+          Hospitals
+        </h4>
+        <table class="table table-hover">
+          <tbody>
+          <tr>
+            <td>Photo</td>
+            <td>Name</td>
+          </tr>
+          <tr [routerLink]="['/hospitals']" class="pointer" *ngFor="let hospital of hospitals" >
+            <td><img  class="img-fluid img-50" [src]="hospital.img | image:'hospital'" alt=""></td>
+            <td>{{ hospital.name  }} </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
