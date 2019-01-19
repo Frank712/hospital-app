@@ -18,35 +18,29 @@ import {SearchComponent} from './search/search.component';
 
 
 const pagesRoutes: Routes = [
-  { path: '',
-    component: PagesComponent,
-    canActivate: [ LoginGuardGuard ],
-    children: [
-      { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard', description: 'This is a Dashboard page'} },
-      { path: 'progress', component: ProgressComponent, data: { title: 'Progress', description: 'This is a Progress page'} },
-      { path: 'graphics1', component: Graphics1Component, data: { title: 'Graphics', description: 'This is a Graphics page'} },
-      { path: 'accountSettings', component: AccountSettingsComponent, data: { title: 'Account Settings', description: 'This is a AccountSettings page'} },
-      { path: 'promises', component: PromisesComponent, data: { title: 'Promises', description: 'This is a Promises page'} },
-      { path: 'profile', component: ProfileComponent, data: { title: 'Edit User profile', description: 'Show and edit the user profile'} },
-      { path: 'view_profile', component: ViewProfileComponent, data: { title: 'View User profile', description: 'Show the user profile'} },
-      { path: 'search/:term', component: SearchComponent, data: { title: 'Searching', description: 'Search in all collections'} },
-      /*  Maintenance  */
-      {
-        path: 'users',
-        canActivate: [AdminGuard],
-        component: UsersComponent,
-        data: {
-          title: 'Users Maintenance',
-          description: 'Controls for users maintenance'
-        }
-        },
-      { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospital Maintenance', description: 'Controls for hospital maintenance'} },
-      { path: 'doctors', component: DoctorsComponent, data: { title: 'Doctor Maintenance', description: 'Controls for doctor maintenance'} },
-      { path: 'doctor/:id', component: DoctorComponent, data: { title: 'Edit Doctor', description: 'Controls for edit a doctor'} },
-      { path: 'rxjs', component: RxjsComponent, data: { title: 'rxjs', description: 'This is a rxj page'} },
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
-    ]
-  },
+    { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard', description: 'This is a Dashboard page'} },
+    { path: 'progress', component: ProgressComponent, data: { title: 'Progress', description: 'This is a Progress page'} },
+    { path: 'graphics1', component: Graphics1Component, data: { title: 'Graphics', description: 'This is a Graphics page'} },
+    { path: 'accountSettings', component: AccountSettingsComponent, data: { title: 'Account Settings', description: 'This is a AccountSettings page'} },
+    { path: 'promises', component: PromisesComponent, data: { title: 'Promises', description: 'This is a Promises page'} },
+    { path: 'profile', component: ProfileComponent, data: { title: 'Edit User profile', description: 'Show and edit the user profile'} },
+    { path: 'view_profile', component: ViewProfileComponent, data: { title: 'View User profile', description: 'Show the user profile'} },
+    { path: 'search/:term', component: SearchComponent, data: { title: 'Searching', description: 'Search in all collections'} },
+    /*  Maintenance  */
+    {
+      path: 'users',
+      canActivate: [AdminGuard],
+      component: UsersComponent,
+      data: {
+        title: 'Users Maintenance',
+        description: 'Controls for users maintenance'
+      }
+      },
+    { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospital Maintenance', description: 'Controls for hospital maintenance'} },
+    { path: 'doctors', component: DoctorsComponent, data: { title: 'Doctor Maintenance', description: 'Controls for doctor maintenance'} },
+    { path: 'doctor/:id', component: DoctorComponent, data: { title: 'Edit Doctor', description: 'Controls for edit a doctor'} },
+    { path: 'rxjs', component: RxjsComponent, data: { title: 'rxjs', description: 'This is a rxj page'} },
+    { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 
 export const PAGES_ROUTES = RouterModule.forChild( pagesRoutes );

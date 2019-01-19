@@ -14,20 +14,24 @@ import {APP_ROUTES} from './app.routes';
 
 // Services
 import {ServiceModule} from './services/service.module';
+import {PagesComponent} from './pages/pages.component';
+import {SharedModule} from './shared/shared.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,
-    PagesModule,
+    /*PagesModule,*/
     FormsModule,
     ReactiveFormsModule,
     ServiceModule,
+    SharedModule,
     APP_ROUTES
   ],
   providers: [],

@@ -9,6 +9,7 @@ import {BreadcrumbsComponent} from './breadcrumbs/breadcrumbs.component';
 import {NopagefoundComponent} from './nopagefound/nopagefound.component';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {ModalUploadComponent} from '../components/modal-upload/modal-upload.component';
 
 @NgModule({
   imports: [
@@ -20,13 +21,15 @@ import {CommonModule} from '@angular/common';
     HeaderComponent,
     SidebarComponent,
     BreadcrumbsComponent,
-    NopagefoundComponent
+    NopagefoundComponent,
+    ModalUploadComponent
   ],
   exports: [
     HeaderComponent,
     SidebarComponent,
     BreadcrumbsComponent,
-    NopagefoundComponent
+    NopagefoundComponent,
+    ModalUploadComponent
   ]
 })
 export class SharedModule { }

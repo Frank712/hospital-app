@@ -24,7 +24,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import {CommonModule} from '@angular/common';
 import { UsersComponent } from './users/users.component';
-import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { HospitalsComponent } from './hospitals/hospitals.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor.component';
@@ -35,7 +34,7 @@ import { SearchComponent } from './search/search.component';
     DashboardComponent,
     ProgressComponent,
     Graphics1Component,
-    PagesComponent,
+    /*PagesComponent,*/
     IncrementerComponent,
     DoughnutChartComponent,
     AccountSettingsComponent,
@@ -44,7 +43,7 @@ import { SearchComponent } from './search/search.component';
     ProfileComponent,
     ViewProfileComponent,
     UsersComponent,
-    ModalUploadComponent,
+    /*ModalUploadComponent,*/
     HospitalsComponent,
     DoctorsComponent,
     DoctorComponent,
@@ -53,11 +52,10 @@ import { SearchComponent } from './search/search.component';
   exports: [
     DashboardComponent,
     ProgressComponent,
-    Graphics1Component,
-    PagesComponent,
+    Graphics1Component
   ],
   imports: [
-    BrowserModule,
+    /*BrowserModule,*/
     CommonModule,
     SharedModule,
     FormsModule,
