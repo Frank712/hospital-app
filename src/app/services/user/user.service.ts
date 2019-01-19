@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import {UserModel} from '../../models/user.model';
 import {HttpClient} from '@angular/common/http';
 import {URL_SERVICES} from '../../config/config';
-import { map } from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {UploadFileService} from '../uploadFile/upload-file.service';
+import {Observable} from 'rxjs';
 declare var swal: any;
 
 @Injectable({
@@ -89,7 +90,17 @@ export class UserService {
       .pipe( map((resp: any) => {
         swal('User created', user.email, 'success');
         return resp.user;
-      }));
+      }),
+        catchError( (errorCatchable: any) => {
+          swal({
+            title: errorCatchable.error.error.errors.email.name,
+            text: errorCatchable.error.error.errors.email.message,
+            icon: 'error'
+          });
+          console.log(errorCatchable.error.error);
+          return new Observable<any>();
+        })
+        );
   }
 
   updateUser( user: UserModel ) {

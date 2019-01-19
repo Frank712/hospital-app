@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserModel} from '../../models/user.model';
 import {UserService} from '../../services/service.index';
-import swal from 'sweetalert';
 import {Router} from '@angular/router';
-
+declare var swal: any;
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -35,7 +34,17 @@ export class ProfileComponent implements OnInit {
     this.user.email = this.user.google ? this.user.email : form.email;
 
     this._userService.updateUser(this.user).subscribe( (resp: any) => {
-      this.router.navigate(['/view_profile']);
+      if ( resp.ok ){
+        this.router.navigate(['/view_profile']);
+      } else {
+        swal({
+          title: resp.error.error.errors.email.name,
+          text: resp.error.error.errors.email.message,
+          icon: 'error'
+        });
+        console.log(resp);
+      }
+
     });
   }
 
