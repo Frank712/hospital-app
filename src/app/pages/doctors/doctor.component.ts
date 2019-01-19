@@ -5,7 +5,7 @@ import {DoctorsService, HospitalService} from '../../services/service.index';
 import {DoctorModel} from '../../models/doctor.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ModalUploadService} from '../../components/modal-upload/modal-upload.service';
-declare var swal: any;
+import swal from 'sweetalert';
 @Component({
   selector: 'app-doctor',
   templateUrl: './doctor.component.html',

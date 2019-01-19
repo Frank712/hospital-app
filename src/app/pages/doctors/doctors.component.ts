@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DoctorsService} from '../../services/service.index';
+import { swal } from 'sweetalert';
 import {DoctorModel} from '../../models/doctor.model';
 declare var swal: any;
 @Component({

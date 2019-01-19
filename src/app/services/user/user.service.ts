@@ -60,9 +60,20 @@ export class UserService {
     }
     const url = URL_SERVICES + '/login';
     return this.http.post(url, user).pipe( map( (resp: any) => {
-      this.saveStorage( resp.id, resp.token, resp.user, resp.menu );
-      return true;
-    }));
+      if ( resp.ok ) {
+        this.saveStorage( resp.id, resp.token, resp.user, resp.menu );
+        return true;
+      }
+    }),
+      catchError( (errorCatchable: any) => {
+        swal({
+          title: 'Error',
+          text: errorCatchable.error.message,
+          icon: 'error'
+        });
+        console.log(errorCatchable);
+        return new Observable<any>();
+      }));
   }
 
   isLogin() {
