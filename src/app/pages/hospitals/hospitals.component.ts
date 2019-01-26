@@ -3,6 +3,8 @@ import {HospitalService} from '../../services/hospital/hospital.service';
 import {HospitalModel} from '../../models/hospital.model';
 import {ModalUploadService} from '../../components/modal-upload/modal-upload.service';
 declare var swal: any;
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-hospitals',
   templateUrl: './hospitals.component.html',
@@ -44,7 +46,7 @@ export class HospitalsComponent implements OnInit {
   }
 
   showFormCreate( ) {
-    swal({
+    /*swal({
       title: 'Create Hospital',
       text: 'Enter the Hospital name:',
       content: 'input',
@@ -56,6 +58,21 @@ export class HospitalsComponent implements OnInit {
         return;
       }
       this.createHospital(value);
+    });*/
+
+    Swal.mixin({
+      input: 'text',
+      confirmButtonText: 'Create',
+      showCancelButton: true
+    }).queue([
+      {
+        title: 'Hospital name',
+        text: 'Insert the name to the new hospital'
+      }
+    ]).then((result) => {
+      if (result.value) {
+        this.createHospital(result.value);
+      }
     });
   }
 
@@ -74,26 +91,34 @@ export class HospitalsComponent implements OnInit {
 
   deleteHospital( hospital: HospitalModel ) {
     console.log('deleteHospital...');
-    swal( {
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons.fire( {
       title: 'Are you sure?',
-      text: `You are about to delete the hospital '${hospital.name}'`,
-      icon: 'warning',
-      buttons: true,
-      dangerMode: true
-    })
-      .then( willDelete => {
-        if ( willDelete ) {
-          this._hospitalService.deleteHospital(hospital._id).subscribe( (resp: any) => {
-            console.log(resp);
-            if ( resp.ok ) {
-              swal( 'Hospital deleted', 'The hospital ' + hospital.name + ' has been deleted successfully', 'success' );
-              this.loadHospitals();
-            } else {
-              swal( 'Error delete', 'The hospital could\'t deleted', 'error' );
-            }
-          });
-        }
-      });
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    } ).then((result) => {
+      if (result.value) {
+        this._hospitalService.deleteHospital(hospital._id).subscribe( (resp: any) => {
+          console.log(resp);
+          if ( resp.ok ) {
+            Swal.fire( 'Hospital deleted', 'The hospital ' + hospital.name + ' has been deleted successfully', 'success' );
+            this.loadHospitals();
+          } else {
+            Swal.fire( 'Error delete', 'The hospital could\'t deleted', 'error' );
+          }
+        });
+      }
+    });
   }
 
   showModalImage( id: string ) {

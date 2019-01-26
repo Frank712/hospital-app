@@ -6,7 +6,7 @@ import {catchError, map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {UploadFileService} from '../uploadFile/upload-file.service';
 import {Observable} from 'rxjs';
-declare var swal: any;
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -66,10 +66,10 @@ export class UserService {
       }
     }),
       catchError( (errorCatchable: any) => {
-        swal({
+        Swal.fire({
           title: 'Error',
           text: errorCatchable.error.message,
-          icon: 'error'
+          type: 'error'
         });
         console.log(errorCatchable);
         return new Observable<any>();
@@ -99,15 +99,20 @@ export class UserService {
     const url = URL_SERVICES + '/users';
     return this.http.post( url, user)
       .pipe( map((resp: any) => {
-        swal('User created', user.email, 'success');
+        Swal.fire('User created', user.email, 'success');
         return resp.user;
       }),
         catchError( (errorCatchable: any) => {
-          swal({
+          Swal.fire({
+            title: errorCatchable.error.error.errors.email.name,
+            text: errorCatchable.error.error.errors.email.message,
+            type: 'error'
+          });
+          /*swal({
             title: errorCatchable.error.error.errors.email.name,
             text: errorCatchable.error.error.errors.email.message,
             icon: 'error'
-          });
+          });*/
           console.log(errorCatchable.error.error);
           return new Observable<any>();
         })
@@ -122,7 +127,14 @@ export class UserService {
         const userDB = resp.user;
         this.saveStorage( user._id, resp.token, userDB, this.menu);
       }
-      swal( 'User updated', 'The user ' + user.name + ' has been updated successfully', 'success' );
+      /*Swal.fire('User updated', 'The user ' + user.name + ' has been updated successfully', 'success');*/
+      Swal.fire({
+        position: 'top-end',
+        type: 'success',
+        title: `The user ${user.name} has been updated successfully`,
+        showConfirmButton: false,
+        timer: 1500
+      })
       return true;
     }));
   }
@@ -131,7 +143,7 @@ export class UserService {
     this._ufService.uploadFile( file, 'users', id)
       .then( (resp: any) => {
         this.user.img = resp.user.img;
-        swal( resp.message, this.user.img, 'success' );
+        Swal.fire( resp.message, this.user.img, 'success' );
         this.saveStorage( id, this.token, this.user, this.menu );
         console.log(resp);
       })
@@ -151,7 +163,7 @@ export class UserService {
   }
 
   deleteUser( id: string ) {
-    const url = URL_SERVICES + '/users/' + id + '?token=' +this.token;
+    const url = URL_SERVICES + '/users/' + id + '?token=' + this.token;
     return this.http.delete(url);
   }
 }

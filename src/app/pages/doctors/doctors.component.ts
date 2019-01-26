@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DoctorsService} from '../../services/service.index';
-import { swal } from 'sweetalert';
 import {DoctorModel} from '../../models/doctor.model';
-declare var swal: any;
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-doctors',
   templateUrl: './doctors.component.html',
@@ -49,7 +48,7 @@ export class DoctorsComponent implements OnInit {
   }
 
   deleteDoctor( doctor: DoctorModel) {
-    swal({
+    /*Swal.fire({
       title: 'Are you sure?',
       text: 'You are about to delete the user ' + doctor.name,
       icon: 'warning',
@@ -61,14 +60,42 @@ export class DoctorsComponent implements OnInit {
           this._doctorService.deleteDoctor(doctor._id).subscribe( (resp: any) => {
             console.log(resp);
             if ( resp.ok ) {
-              swal( 'User deleted', 'The doctor ' + doctor.name + ' has been deleted successfully', 'success' );
+              Swal.fire( 'User deleted', 'The doctor ' + doctor.name + ' has been deleted successfully', 'success' );
               this.loadDoctors();
             } else {
-              swal( 'Error delete', 'The doctor could\'t deleted', 'error' );
+              Swal.fire( 'Error delete', 'The doctor could\'t deleted', 'error' );
             }
           });
         }
-      });
+      });*/
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons.fire( {
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    } ).then((result) => {
+      if (result.value) {
+        this._doctorService.deleteDoctor(doctor._id).subscribe( (resp: any) => {
+          console.log(resp);
+          if ( resp.ok ) {
+            Swal.fire( 'User deleted', 'The doctor ' + doctor.name + ' has been deleted successfully', 'success' );
+            this.loadDoctors();
+          } else {
+            Swal.fire( 'Error delete', 'The doctor could\'t deleted', 'error' );
+          }
+        });
+      }
+    });
   }
 
 }

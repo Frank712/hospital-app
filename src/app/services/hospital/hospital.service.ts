@@ -6,7 +6,7 @@ import {map} from 'rxjs/operators';
 import {UploadFileService} from '../../services/uploadFile/upload-file.service';
 import { UserService } from '../../services/user/user.service';
 
-declare var swal: any;
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +44,7 @@ export class HospitalService {
     url += '?token=' + this._userService.token;
     return this.http.post( url, { name })
       .pipe( map((resp: any) => {
-        swal('Hospital created', `Hospital '${name} created successfully!`, 'success');
+        Swal.fire('Hospital created', `Hospital '${name} created successfully!`, 'success');
         return resp.hospital;
       }));
   }
@@ -54,7 +54,7 @@ export class HospitalService {
     url += '?token=' + this._userService.token;
     return this.http.put(url, hospital).pipe( map( (resp: any) => {
       if ( resp.ok ) {
-        swal( 'Hospital updated', `The hospital '${hospital.name}' has been updated successfully`, 'success' );
+        Swal.fire( 'Hospital updated', `The hospital '${hospital.name}' has been updated successfully`, 'success' );
         return true;
       }
     }));

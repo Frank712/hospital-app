@@ -3,6 +3,8 @@ import {UserModel} from '../../models/user.model';
 import {UserService} from '../../services/service.index';
 import {ModalUploadService} from '../../components/modal-upload/modal-upload.service';
 declare var swal: any;
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -77,29 +79,37 @@ export class UsersComponent implements OnInit {
 
   deleteUser( user: UserModel ) {
     if ( user._id === this._userService.user._id ) {
-      swal('Error!', 'You can\'t delete yourself', 'error');
+      Swal.fire('Error!', 'You can\'t delete yourself', 'error');
       return;
     }
-    swal({
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons.fire( {
       title: 'Are you sure?',
-      text: 'You are about to delete the user ' + user.name,
-      icon: 'warning',
-      buttons: true,
-      dangerMode: true
-    })
-      .then( willDelete => {
-        if ( willDelete ) {
-          this._userService.deleteUser(user._id).subscribe( (resp: any) => {
-            console.log(resp);
-            if ( resp.ok ) {
-              swal( 'User deleted', 'The user ' + user.name + ' has been deleted successfully', 'success' );
-              this.loadUsers();
-            } else {
-              swal( 'Error delete', 'The user could\'t deleted', 'error' );
-            }
-          });
-        }
-      });
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    } ).then((result) => {
+      if (result.value) {
+        this._userService.deleteUser(user._id).subscribe( (resp: any) => {
+          console.log(resp);
+          if ( resp.ok ) {
+            Swal.fire( 'User deleted', 'The user ' + user.name + ' has been deleted successfully', 'success' );
+            this.loadUsers();
+          } else {
+            Swal.fire( 'Error delete', 'The user could\'t deleted', 'error' );
+          }
+        });
+      }
+    });
   }
 
   showModalImage( id: string ) {

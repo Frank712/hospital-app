@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
+
+
 import {HospitalModel} from '../../models/hospital.model';
+
+
 import {DoctorsService, HospitalService} from '../../services/service.index';
 import {DoctorModel} from '../../models/doctor.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ModalUploadService} from '../../components/modal-upload/modal-upload.service';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-doctor',
   templateUrl: './doctor.component.html',
@@ -42,7 +46,7 @@ export class DoctorComponent implements OnInit {
     console.log(form.value);
     if ( !form.valid ) return;
     this._doctorService.saveDoctor( this.doctor ).subscribe( (resp: any) => {
-      swal( 'Ok!', resp.message, 'success' );
+      Swal.fire( 'Ok!', resp.message, 'success' );
       this.doctor._id = resp.doctor._id;
       this.router.navigate(['/doctor', this.doctor._id]);
     });

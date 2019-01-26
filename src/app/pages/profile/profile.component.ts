@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {UserModel} from '../../models/user.model';
 import {UserService} from '../../services/service.index';
 import {Router} from '@angular/router';
-declare var swal: any;
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -26,7 +27,7 @@ export class ProfileComponent implements OnInit {
 
   editProfile( form ) {
     if ( !form.confirm ) {
-      swal( 'Important', 'You must confirm the chages', 'warning' );
+      Swal.fire( 'Important', 'You must confirm the chages', 'warning' );
       return;
     }
     this.user.name = form.name;
@@ -34,13 +35,15 @@ export class ProfileComponent implements OnInit {
     this.user.email = this.user.google ? this.user.email : form.email;
 
     this._userService.updateUser(this.user).subscribe( (resp: any) => {
-      if ( resp.ok ){
+      console.log(resp);
+      if ( resp ) {
         this.router.navigate(['/view_profile']);
+        return;
       } else {
-        swal({
+        Swal.fire({
           title: resp.error.error.errors.email.name,
           text: resp.error.error.errors.email.message,
-          icon: 'error'
+          type: 'error'
         });
         console.log(resp);
       }
@@ -55,7 +58,7 @@ export class ProfileComponent implements OnInit {
     }
 
     if ( file.type.indexOf('image') < 0 ) {
-      swal('Only images', 'The selected file is not a image', 'error');
+      Swal.fire('Only images', 'The selected file is not a image', 'error');
       this.imageUpload = null;
       return;
     }
