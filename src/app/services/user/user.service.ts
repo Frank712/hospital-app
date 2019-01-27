@@ -22,6 +22,29 @@ export class UserService {
     this.loadStorage();
   }
 
+  renewToken() {
+    let url = URL_SERVICES + '/login/renew_token/';
+    url += '?token=' + this.token;
+    return this.http.get(url).pipe(
+      map( (resp: any) => {
+        this.token = resp.token;
+        localStorage.setItem('token', this.token);
+        console.log('Token renew');
+        return true;
+      }),
+      catchError( (errorCatchable: any) => {
+        this.router.navigate(['/login']);
+        Swal.fire({
+          title: 'Error',
+          text: 'Can not renew the token',
+          type: 'error'
+        });
+        console.log(errorCatchable);
+        return new Observable<any>();
+      })
+    );
+  }
+
   loadStorage() {
     if ( localStorage.getItem('token') ) {
       this.token = localStorage.getItem('token');

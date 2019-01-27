@@ -13,6 +13,7 @@ import {
 } from './service.index';
 import {HttpClientModule} from '@angular/common/http';
 import {ModalUploadService} from '../components/modal-upload/modal-upload.service';
+import {VerifyTokenGuard} from './guards/verify-token.guard';
 
 @NgModule({
   declarations: [],
@@ -30,7 +31,8 @@ import {ModalUploadService} from '../components/modal-upload/modal-upload.servic
     ModalUploadService,
     HospitalService,
     DoctorsService,
-    AdminGuard
+    AdminGuard,
+    VerifyTokenGuard
   ]
 })
 export class ServiceModule { }
