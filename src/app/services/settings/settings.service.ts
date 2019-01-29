@@ -15,7 +15,6 @@ export class SettingsService {
   }
 
   saveSettings() {
-    console.log('Saved in localStorage');
     localStorage.setItem('settings', JSON.stringify( this.settingsTheme));
   }
 

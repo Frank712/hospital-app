@@ -10,12 +10,14 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   user: UserModel;
+  isAdmin: boolean;
 
   constructor( public _userService: UserService,
                public router: Router ) { }
 
   ngOnInit() {
     this.user = this._userService.user;
+    this.isAdmin = this.user.role === 'ADMIN_ROLE';
   }
 
   search( term: string ) {

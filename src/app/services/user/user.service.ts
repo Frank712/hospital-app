@@ -157,7 +157,7 @@ export class UserService {
         title: `The user ${user.name} has been updated successfully`,
         showConfirmButton: false,
         timer: 1500
-      })
+      });
       return true;
     }));
   }

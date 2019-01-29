@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
 
   editProfile( form ) {
     if ( !form.confirm ) {
-      Swal.fire( 'Important', 'You must confirm the chages', 'warning' );
+      Swal.fire( 'Important', 'You must confirm the changes', 'warning' );
       return;
     }
     this.user.name = form.name;

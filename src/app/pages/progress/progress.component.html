@@ -1,55 +1,60 @@
-<div class="row animated fadeIn">
-  <div class="col-12">
-    <div class="card">
-      <h4 class="car-title">Progress Bar</h4>
-      <div class="card-body">
-        <div class="progress">
-          <div
-            class="progress-bar progress-bar-striped progress-bar-animated"
-            role="progressbar"
-            [attr.ariaValueNow]="percent_1"
-            aria-valuenow="50" aria-valuemin="0"
-            aria-valuemax="100"
-            [style.width]="percent_1 + '%'"></div>
+<div class="container">
+  <p>This page is a demo.</p>
+  <div class="row animated fadeIn">
+    <div class="col-12">
+      <div class="card">
+        <h4 class="car-title">Progress Bar</h4>
+        <div class="card-body">
+          <div class="progress">
+            <div
+              class="progress-bar progress-bar-striped progress-bar-animated"
+              role="progressbar"
+              [attr.ariaValueNow]="percent_1"
+              aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100"
+              [style.width]="percent_1 + '%'"></div>
+          </div>
+          <br>
+          <div class="progress">
+            <div
+              class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+              role="progressbar"
+              [attr.ariaValueNow]="percent_2"
+              aria-valuenow="50" aria-valuemin="0"
+              aria-valuemax="100"
+              [style.width]="percent_2 + '%'"></div>
+          </div>
         </div>
-        <br>
-        <div class="progress">
-          <div
-            class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-            role="progressbar"
-            [attr.ariaValueNow]="percent_2"
-            aria-valuenow="50" aria-valuemin="0"
-            aria-valuemax="100"
-            [style.width]="percent_2 + '%'"></div>
+      </div>
+    </div>
+  </div>
+
+  <p>Change the values:</p>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <app-incrementer
+            (changeValueEmitter)="percent_1 = $event"
+            [identifier]="'ProgressBlue'"
+            [percent]="percent_1">
+          </app-incrementer>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <app-incrementer
+            (changeValueEmitter)="percent_2 = $event"
+            [identifier]="'ProgressGreen'"
+            [percent]="percent_2">
+          </app-incrementer>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-<div class="row">
-  <div class="col-6">
-    <div class="card">
-      <div class="card-body">
-        <app-incrementer
-          (changeValueEmitter)="percent_1 = $event"
-          [identifier]="'ProgressBlue'"
-          [percent]="percent_1">
-        </app-incrementer>
-      </div>
-    </div>
-  </div>
-  <div class="col-6">
-    <div class="card">
-      <div class="card-body">
-        <app-incrementer
-          (changeValueEmitter)="percent_2 = $event"
-          [identifier]="'ProgressGreen'"
-          [percent]="percent_2">
-        </app-incrementer>
-      </div>
-    </div>
-  </div>
-</div>
 

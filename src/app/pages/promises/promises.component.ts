@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {interval} from 'rxjs';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-promises',
@@ -9,11 +10,14 @@ import {interval} from 'rxjs';
 export class PromisesComponent implements OnInit {
 
   public counter = 0;
+  public message: string;
+  public numberProcess: number = 0;
 
   constructor() {
     console.log('Starting...');
+    this.message = 'Starting...';
     this.countThree().then(
-      () => console.log('Finished success!')
+      () => this.message = 'Finished...'
     ).catch(
       error => console.error('Failed!!!', error));
   }
@@ -22,17 +26,26 @@ export class PromisesComponent implements OnInit {
     return new Promise( (resolve, reject) => {
       const _interval = setInterval(() => {
         this.counter += 1;
-        if ( this.counter === 100 ) {
+        if ( this.counter === 99 ) {
+          this.numberProcess += 1;
+          Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title: `The process #${this.numberProcess} has ended`,
+            showConfirmButton: true,
+            timer: 1200
+          });
           resolve( true );
-        } else if ( this.counter === 101 ) {
+        } else if ( this.counter === 100 ) {
           reject( false );
           clearInterval(_interval);
         }
-      }, 100);
+      }, 50);
     });
   }
 
   ngOnInit() {
+
   }
 
 }

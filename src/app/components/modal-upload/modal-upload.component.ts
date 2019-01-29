@@ -14,7 +14,6 @@ export class ModalUploadComponent implements OnInit {
 
   constructor( public _uploadFilesServices: UploadFileService,
                public _modalUpService: ModalUploadService) {
-    console.log('Modal Ready!');
   }
 
   imageSelected( file: File ) {

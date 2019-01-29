@@ -26,7 +26,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.loadUsers();
-    this._modUpServices.notification.subscribe( (resp) =>{
+    this._modUpServices.notification.subscribe( (resp) => {
       this.loadUsers();
     });
   }
@@ -74,6 +74,13 @@ export class UsersComponent implements OnInit {
       this.plural = !(this.totalSearch === 1);
       this.searching = true;
       this.loadingUser = false;
+    }, (err) => {
+      if ( err.status === 400 ) {
+        console.log(err);
+        Swal.fire('Attention!', err.error.message, 'warning');
+        this.loadingUser = false;
+        return;
+      }
     });
   }
 

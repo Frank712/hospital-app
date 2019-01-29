@@ -3,8 +3,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../services/service.index';
 import {UserModel} from '../models/user.model';
 import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
 declare function init_plugins();
-declare var swal: any;
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -56,7 +57,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     if ( !this._formGroup.value.conditions ) {
-      swal( 'Important', 'Must be accept conditions', 'warning' );
+      Swal.fire( 'Important', 'Must be accept conditions', 'warning' );
       return;
     }
     const user = new UserModel(

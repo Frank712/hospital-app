@@ -1,13 +1,21 @@
-<div class="row animated fadeIn">
-  <div class="col-sm-6 col-12" *ngFor="let graphic of graphics">
-    <div class="card">
-      <div class="card-body">
+<div class="container">
+  <p>This page is only a demo. (The data is generated randomly)</p>
+  <div class="row animated fadeIn">
+    <div class="col-sm-6 col-12" *ngFor="let graphic of graphics">
+      <div class="card">
+        <div class="card-body">
 
-        <app-doughnut-chart [doughnutChartType]="graphic.type" [doughnutChartData]="graphic.data" [doughnutChartLabels]="graphic.labels" [doughnutItem]="graphic.item">
+          <app-doughnut-chart [doughnutChartType]="graphic.type" [doughnutChartData]="graphic.data" [doughnutChartLabels]="graphic.labels" [doughnutItem]="graphic.item">
 
-        </app-doughnut-chart>
+          </app-doughnut-chart>
 
+        </div>
       </div>
     </div>
   </div>
+  <div class="text-left">
+    <p >For use a CRUD go to <a routerLink="/users"> here.</a> </p>
+  </div>
+
 </div>
+
