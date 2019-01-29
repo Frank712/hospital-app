@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
 
+This project is the frontend for a web system to administration of users, doctors y hospital. It's has been created using Angular2, Boostrap, CSS3, etc.
+Contains 12 views to interact with user.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
