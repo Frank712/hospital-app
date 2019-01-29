@@ -20,7 +20,6 @@ import {SearchComponent} from './search/search.component';
 const pagesRoutes: Routes = [
     { path: 'dashboard',
       component: DashboardComponent,
-      canActivate: [VerifyTokenGuard],
       data: { title: 'Dashboard', description: 'This is a Dashboard page'}
     },
     { path: 'progress', component: ProgressComponent, data: { title: 'Progress', description: 'This is a Progress page'} },

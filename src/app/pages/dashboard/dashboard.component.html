@@ -1,3 +1,37 @@
-<p>
-  dashboard works!
-</p>
+<div class="container">
+  <h2>Welcome {{user.name}}</h2>
+  <div class="card">
+    <div class="card-header">
+      Yours tasks are:
+    </div>
+    <div class="card-body" *ngIf="isAdmin">
+      <h5 class="card-title">Maintenance of users</h5>
+      <p class="card-text">You must take car of:</p>
+      <ul>
+        <li>Update the image and role of users</li>
+        <li>Delete users</li>
+      </ul>
+      <a href="#users" class="btn btn-primary">Go to Users</a>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Maintenance of doctors</h5>
+      <p class="card-text">You must take car of:</p>
+      <ul>
+        <li>Create new doctors</li>
+        <li>Update doctors</li>
+        <li>Delete doctors</li>
+      </ul>
+      <a href="#doctors" class="btn btn-primary">Go to Doctors</a>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Maintenance of hospitals</h5>
+      <p class="card-text">You must take car of:</p>
+      <ul>
+        <li>Create hospitals</li>
+        <li>Update hospitals</li>
+        <li>Delete hospitals</li>
+      </ul>
+      <a href="#hospitals" class="btn btn-primary">Go to Hospitals</a>
+    </div>
+  </div>
+</div>

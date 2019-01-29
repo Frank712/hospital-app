@@ -13,8 +13,10 @@ export class VerifyTokenGuard implements CanActivate {
   canActivate( ): Promise<boolean> | boolean {
     console.log('Begin Verify tokenGuard');
     const token = this._userService.token;
+    console.log(token);
     const payload = JSON.parse(atob(token.split('.')[1]));
     const exp = payload.exp;
+    console.log(payload);
     if ( this.expired(exp) ) {
       this.router.navigate(['/login']);
       return false;
