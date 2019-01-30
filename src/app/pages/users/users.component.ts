@@ -20,6 +20,8 @@ export class UsersComponent implements OnInit {
   totalSearch = 0;
   plural = false;
   searching = false;
+  restricted = '5c4d8317b24bea001710099c';
+
 
   constructor( public _userService: UserService,
                public _modUpServices: ModalUploadService ) { }

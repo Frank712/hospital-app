@@ -56,10 +56,10 @@
               <label *ngIf="!user.google" class="label label-info">AppAuth</label>
             </td>
             <td>
-              <button (click)="saveUser(user)" class="btn btn-primary">
+              <button [disabled]="user._id === restricted" (click)="saveUser(user)" class="btn btn-primary">
                 <i class="fa fa-save"></i>
               </button> |
-              <button (click)="deleteUser(user)" class="btn btn-danger">
+              <button [disabled]="user._id === restricted" (click)="deleteUser(user)" class="btn btn-danger">
                 <i class="fa fa-trash-o"></i>
               </button>
             </td>
